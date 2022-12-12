@@ -6,6 +6,7 @@ import { getStudents } from "../../managers/StudentManager"
 export const InstrumentList = () => {
     const [instruments, setInstruments] = useState([])
     const [students, setStudents] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
         getInstruments().then(data => setInstruments(data))
@@ -49,7 +50,12 @@ export const InstrumentList = () => {
                             </div>
                         </div>
                         <aside>
-                            <button>Edit</button>
+                            <button onClick={
+                                () => navigate(`/instruments/${instrument.id}`)}
+                                // className="btn btn-primary"
+                                key={`editButton--${instrument.id}`}>
+                                    Edit
+                            </button>
                             <button>Delete</button>
                         </aside>
                     </section>

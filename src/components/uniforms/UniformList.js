@@ -6,6 +6,7 @@ import { getUniforms } from "../../managers/UniformManager"
 export const UniformList = () => {
     const [uniforms, setUniforms] = useState([])
     const [students, setStudents] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
         getUniforms().then(data => setUniforms(data))
@@ -42,7 +43,12 @@ export const UniformList = () => {
                             }                            </div>
                         </div>
                         <aside>
-                            <button>Edit</button>
+                            <button onClick={
+                                () => navigate(`/uniforms/${uniform.id}`)}
+                                // className="btn btn-primary"
+                                key={`editButton--${uniform.id}`}>
+                                    Edit
+                            </button>
                             <button>Delete</button>
                         </aside>
                     </section>

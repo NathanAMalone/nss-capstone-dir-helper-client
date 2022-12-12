@@ -6,6 +6,7 @@ import { getStudents } from "../../managers/StudentManager"
 export const PropList = () => {
     const [props, setProps] = useState([])
     const [students, setStudents] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
         getProps().then(data => setProps(data))
@@ -37,7 +38,12 @@ export const PropList = () => {
                             </div>
                         </div>
                         <aside>
-                            <button>Edit</button>
+                        <button onClick={
+                                () => navigate(`/props/${prop.id}`)}
+                                // className="btn btn-primary"
+                                key={`editButton--${prop.id}`}>
+                                    Edit
+                            </button>
                             <button>Delete</button>
                         </aside>
                     </section>
