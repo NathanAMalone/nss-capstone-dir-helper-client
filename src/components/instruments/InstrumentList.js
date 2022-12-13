@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getInstruments } from "../../managers/InstrumentManager"
+import { deleteInstrument, getInstruments } from "../../managers/InstrumentManager"
 import { getStudents } from "../../managers/StudentManager"
 
 export const InstrumentList = () => {
@@ -19,7 +19,11 @@ export const InstrumentList = () => {
     return (
         <article className="instruments">
             <header className="instrumentHeader">Instruments</header>
-            <button>Add New Instrument</button>
+            <button onClick={
+                () => navigate(`/addInstruments`)}
+            className="btn btn-primary">
+                Add Instrument
+            </button>
             {
                 instruments.map((instrument) => {
                     return <section className="instrumentCard">
@@ -56,7 +60,12 @@ export const InstrumentList = () => {
                                 key={`editButton--${instrument.id}`}>
                                     Edit
                             </button>
-                            <button>Delete</button>
+                            <button onClick={
+                                () => deleteInstrument(instrument.id).then(window.location.reload())}
+                                // className="btn btn-primary"
+                                key={`deleteButton--${instrument.id}`}>
+                                    Delete
+                            </button>
                         </aside>
                     </section>
                 })    

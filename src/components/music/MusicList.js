@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getMusic } from "../../managers/MusicManager"
+import { deleteMusic, getMusic } from "../../managers/MusicManager"
 import { getStudents } from "../../managers/StudentManager"
 
 export const MusicList = () => {
@@ -19,7 +19,11 @@ export const MusicList = () => {
     return (
         <article className="music">
             <header className="musicHeader">Music</header>
-            <button>Add New Music</button>
+            <button onClick={
+                () => navigate(`/addMusic`)}
+            className="btn btn-primary">
+                Add Music
+            </button>
             {
                 music.map((music) => {
                     return <section className="musicCard">
@@ -41,13 +45,18 @@ export const MusicList = () => {
                             </div>
                         </div>
                         <aside>
-                        <button onClick={
+                            <button onClick={
                                 () => navigate(`/music/${music.id}`)}
                                 // className="btn btn-primary"
                                 key={`editButton--${music.id}`}>
                                     Edit
                             </button>
-                            <button>Delete</button>
+                            <button onClick={
+                                () => deleteMusic(music.id).then(window.location.reload())}
+                                // className="btn btn-primary"
+                                key={`deleteButton--${music.id}`}>
+                                    Delete
+                            </button>
                         </aside>
                     </section>
                 })    

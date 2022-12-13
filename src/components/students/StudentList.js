@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getStudents } from "../../managers/StudentManager"
+import { deleteStudent, getStudents } from "../../managers/StudentManager"
 
 export const StudentList = () => {
     const [students, setStudents] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         getStudents().then(data => setStudents(data))
@@ -35,8 +36,18 @@ export const StudentList = () => {
                             </div>
                         </div>
                         <aside>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={
+                                () => navigate(`/students/${student.id}`)}
+                                // className="btn btn-primary"
+                                key={`editButton--${student.id}`}>
+                                    Edit
+                            </button>
+                            <button onClick={
+                                () => deleteStudent(student.id).then(window.location.reload())}
+                                // className="btn btn-primary"
+                                key={`deleteButton--${student.id}`}>
+                                    Delete
+                            </button>
                         </aside>
                     </section>
                 })    

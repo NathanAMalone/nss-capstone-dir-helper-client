@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getStudents } from "../../managers/StudentManager"
-import { getUniforms } from "../../managers/UniformManager"
+import { deleteUniform, getUniforms } from "../../managers/UniformManager"
 
 export const UniformList = () => {
     const [uniforms, setUniforms] = useState([])
@@ -19,7 +19,11 @@ export const UniformList = () => {
     return (
         <article className="uniforms">
             <header className="uniformHeader">Uniforms</header>
-            <button>Add New Uniform</button>
+            <button onClick={
+                () => navigate(`/addUniforms`)}
+            className="btn btn-primary">
+                Add Uniform
+            </button>
             {
                 uniforms.map((uniform) => {
                     return <section className="uniformCard">
@@ -49,7 +53,12 @@ export const UniformList = () => {
                                 key={`editButton--${uniform.id}`}>
                                     Edit
                             </button>
-                            <button>Delete</button>
+                        <button onClick={
+                            () => deleteUniform(uniform.id).then(window.location.reload())}
+                            // className="btn btn-primary"
+                            key={`deleteButton--${uniform.id}`}>
+                                Delete
+                        </button>
                         </aside>
                     </section>
                 })    

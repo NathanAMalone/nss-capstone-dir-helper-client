@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getOneProp, updateProp } from "../../managers/PropManager";
+import { useNavigate } from "react-router-dom";
+import { createProp } from "../../managers/PropManager";
 
-export const EditProp = () => {
-    const { propId } = useParams()
+export const AddProp = () => {
     const [ currentProp, setCurrentProp ] = useState({
-        name: ""
+        name: "",
+        assigned: false
     })
     const navigate = useNavigate()
-
-useEffect(() => {
-    getOneProp(propId).then(data => setCurrentProp(data))
-}, [propId])
 
 const changePropState = (evt) => {
     const copy = {...currentProp}
@@ -22,7 +18,7 @@ const changePropState = (evt) => {
 
 return (
     <article className="props">
-        <header className="propHeader">Edit Prop</header>
+        <header className="propHeader">New Prop Form</header>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="type">Name: </label>
@@ -39,16 +35,17 @@ return (
                 evt.preventDefault()
 
                 const prop = {
-                    name: currentProp.name
+                    name: currentProp.name,
+                    assigned: false
                 }
                 
                 // Send POST request to your API
-                updateProp(prop, propId)
+                createProp(prop)
                     .then(() => navigate("/props"))
             }}
             // className="btn btn-primary"
             >
-                Update
+                Add
         </button>
     </article>
 

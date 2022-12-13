@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getProps } from "../../managers/PropManager"
+import { deleteProp, getProps } from "../../managers/PropManager"
 import { getStudents } from "../../managers/StudentManager"
 
 export const PropList = () => {
     const [props, setProps] = useState([])
     const [students, setStudents] = useState([])
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         getProps().then(data => setProps(data))
     }, [])
@@ -19,7 +19,11 @@ export const PropList = () => {
     return (
         <article className="props">
             <header className="propHeader">Props</header>
-            <button>Add New Prop</button>
+            <button onClick={
+                () => navigate(`/addProps`)}
+            className="btn btn-primary">
+                Add Prop
+            </button>
             {
                 props.map((prop) => {
                     return <section className="propCard">
@@ -39,12 +43,17 @@ export const PropList = () => {
                         </div>
                         <aside>
                         <button onClick={
-                                () => navigate(`/props/${prop.id}`)}
-                                // className="btn btn-primary"
-                                key={`editButton--${prop.id}`}>
-                                    Edit
-                            </button>
-                            <button>Delete</button>
+                            () => navigate(`/props/${prop.id}`)}
+                            // className="btn btn-primary"
+                            key={`editButton--${prop.id}`}>
+                                Edit
+                        </button>
+                        <button onClick={
+                            () => deleteProp(prop.id).then(window.location.reload())}
+                            // className="btn btn-primary"
+                            key={`deleteButton--${prop.id}`}>
+                                Delete
+                        </button>
                         </aside>
                     </section>
                 })    
