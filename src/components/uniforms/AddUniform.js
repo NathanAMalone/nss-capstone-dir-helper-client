@@ -19,7 +19,7 @@ const changeUniformState = (evt) => {
 }
 
 return (
-    <article className="uniforms">
+    <form className="uniforms">
         <header className="uniformHeader">New Uniform Form</header>
         <fieldset>
             <div className="form-group">
@@ -60,7 +60,7 @@ return (
             >
                 Add
         </button>
-    </article>
+    </form>
 
 )
 }

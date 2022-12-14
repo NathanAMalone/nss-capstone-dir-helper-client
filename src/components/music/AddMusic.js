@@ -18,7 +18,7 @@ const changeMusicState = (evt) => {
 }
 
 return (
-    <article className="music">
+    <form className="music">
         <header className="musicHeader">New Music Form</header>
         <fieldset>
             <div className="form-group">
@@ -58,7 +58,7 @@ return (
             >
                 Add
         </button>
-    </article>
+    </form>
 
 )
 }

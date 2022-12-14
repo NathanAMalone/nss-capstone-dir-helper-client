@@ -22,7 +22,7 @@ const changeMusicState = (evt) => {
 }
 
 return (
-    <article className="music">
+    <form className="music">
         <header className="musicHeader">Edit Music</header>
         <fieldset>
             <div className="form-group">
@@ -61,7 +61,7 @@ return (
             >
                 Update
         </button>
-    </article>
+    </form>
 
 )
 }

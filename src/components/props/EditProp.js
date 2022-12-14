@@ -21,7 +21,7 @@ const changePropState = (evt) => {
 }
 
 return (
-    <article className="props">
+    <form className="props">
         <header className="propHeader">Edit Prop</header>
         <fieldset>
             <div className="form-group">
@@ -50,7 +50,7 @@ return (
             >
                 Update
         </button>
-    </article>
+    </form>
 
 )
 }

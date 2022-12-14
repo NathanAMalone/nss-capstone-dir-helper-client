@@ -33,7 +33,7 @@ const changeInstrumentCheck = (evt) => {
 }
 
 return (
-    <article className="instruments">
+    <form className="instruments">
         <header className="instrumentHeader">Edit Instrument</header>
         <fieldset>
             <div className="form-group">
@@ -102,7 +102,7 @@ return (
             >
                 Update
         </button>
-    </article>
+    </form>
 
 )
 }

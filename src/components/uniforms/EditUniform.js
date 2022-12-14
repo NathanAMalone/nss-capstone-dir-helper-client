@@ -30,7 +30,7 @@ const changeUniformCheck = (evt) => {
 }
 
 return (
-    <article className="uniforms">
+    <form className="uniforms">
         <header className="uniformHeader">Edit Uniform</header>
         <fieldset>
             <div className="form-group">
@@ -79,7 +79,7 @@ return (
             >
                 Update
         </button>
-    </article>
+    </form>
 
 )
 }
