@@ -35,7 +35,7 @@ export const UniformList = () => {
                             {
                                 uniform.assigned
                                 ? students.map(student => {
-                                    if(student.uniform.id === uniform.id)
+                                    if(student?.uniform?.id === uniform.id)
                                     return <li>{student.full_name}</li>
                                 })
                                 :<div>Not assigned.</div>

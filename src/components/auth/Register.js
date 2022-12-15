@@ -79,16 +79,19 @@ export const Register = () => {
                         type="text" id="last_name"
                         className="form-control" required />
                 </fieldset>
-                {/* <fieldset>
+                <fieldset>
                     <label htmlFor="school"> School </label>
-                    <select className="schoolDropDown"
+                    <select className="schoolDropDown" id="school"
                         onChange={(evt) => {
-                            setSchoolId(parseInt(evt.target.value))
+                            const copy = { ...student}
+                            copy[evt.target.id] = parseInt(evt.target.value)
+                            setStudent(copy)
                         }}>
                         <option>Select School...</option>
                         {
                             schools.map((school) => {
                                 return <option
+                                    id="school"
                                     value={`${school.id}`}
                                     key={`school--${school.id}`}>
                                     {school.name}
@@ -96,7 +99,7 @@ export const Register = () => {
                             })
                         }
                     </select>
-                </fieldset> */}
+                </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
                     <input onChange={updateStudent}

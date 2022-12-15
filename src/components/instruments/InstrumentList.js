@@ -46,7 +46,7 @@ export const InstrumentList = () => {
                             {
                                 instrument.assigned
                                 ? students.map(student => {
-                                    if(student.instrument.id === instrument.id)
+                                    if(student?.instrument?.id === instrument.id)
                                         return <li>{student.full_name}.</li>
                                 })
                                 :<div>Not assigned.</div>

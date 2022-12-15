@@ -13,17 +13,16 @@ export const StudentList = () => {
     return (
         <article className="students">
             <header className="studentHeader">Students</header>
-            <button>Add New Student</button>
             {
                 students.map((student) => {
                     return <section className="studentCard">
                         <div className="cardData">
                             <div className="cardDiv">Name: {student.full_name}</div>
                             <div className="cardDiv">School: {student.school.name}</div>
-                            <div className="cardDiv">Instrument: {student.instrument.name}</div>
-                            <div className="cardDiv">Instrument Serial Number: {student.instrument.serial_number}</div>
-                            <div className="cardDiv">Prop: {student.prop.name}</div>
-                            <div className="cardDiv">Uniform: {student.uniform.uniform_number}</div>
+                            <div className="cardDiv">Instrument: {student?.instrument?.name}</div>
+                            <div className="cardDiv">Instrument Serial Number: {student?.instrument?.serial_number}</div>
+                            <div className="cardDiv">Prop: {student?.prop?.name}</div>
+                            <div className="cardDiv">Uniform: {student?.uniform?.uniform_number}</div>
                             <div className="cardDiv">
                                 {
                                     student.music_parts.map(part => {

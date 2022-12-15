@@ -16,19 +16,18 @@ export const EditStudent = () => {
     })
     const navigate = useNavigate()
     const [ props, setProps ] = useState([])
-    const [ propsId, setPropsId ] = useState(0)
     const [ uniforms, setUniforms ] = useState([])
-    const [ uniformsId, setUniformsId ] = useState(0)
     const [ instruments, setInstruments ] = useState([])
-    const [ instrumentsId, setInstrumentsId ] = useState(0)
     const [ musics, setMusic ] = useState([])
     const [ assignedMusic, setAssignedMusic ] = useState(new Set())
 
 useEffect(() => {
     getOneStudent(studentId).then(data => {setCurrentStudent(data)
+        const selectedMusic = new Set()
         for (const part of data.music_parts) {
-            assignedMusic.add(part.id)
+            selectedMusic.add(part.id)
         }
+        setAssignedMusic(selectedMusic)
     })
 }, [studentId])
 
@@ -47,15 +46,13 @@ useEffect(() => {
 useEffect(() => {
     getMusic().then(data => setMusic(data))
 }, [])
-// useEffect(() => {
-//     getOneStudent(studentId)
-//         .then((data) => {
-//             setCurrentStudent(data)
-//             for (const music of data.musics) {
-//                 assignedMusic.add(music.id)
-//             }
-//         })
-// }, [studentId])
+
+const changeCurrentStudentState = (evt) => {
+    const copy = {...currentStudent}
+    const propertyToModify = evt.target.id
+    copy[propertyToModify] = parseInt(evt.target.value)
+    setCurrentStudent(copy)
+}
 
 return (
     <form className="studentsEdit">
@@ -63,15 +60,20 @@ return (
         <fieldset>
             <div className="form-group">
                 <label htmlFor="instrument">Instrument: </label>
-                <select className="instrumentDropDown"
-                    onChange={(evt) => {
-                        setInstrumentsId(parseInt(evt.target.value))
-                    }}
+                <select className="instrumentDropDown" id="instrument"
+                    onChange={
+                        // (evt) => {
+                        // setInstrumentsId(parseInt(evt.target.value))
+                        changeCurrentStudentState
+                    // }
+                }
                 >
-                    <option value={currentStudent?.instrument?.id}>Select Instrument...</option>
+                    <option value={0}>Select Instrument...</option>
                     {
                         instruments.map((instrument) => {
+                            const isSelected = instrument.id === currentStudent?.instrument?.id
                             return <option
+                                selected={isSelected ? true:false}
                                 value={`${instrument.id}`}
                                 key={`instrument==${instrument.id}`}
                             >
@@ -85,15 +87,20 @@ return (
         <fieldset>
             <div className="form-group">
                 <label htmlFor="instrument">Uniform: </label>
-                <select className="uniformDropDown"
-                    onChange={(evt) => {
-                        setUniformsId(parseInt(evt.target.value))
-                    }}
+                <select className="uniformDropDown" id="uniform"
+                    onChange={
+                        // (evt) => {
+                        // setUniformsId(parseInt(evt.target.value))
+                        changeCurrentStudentState
+                    // }
+                }
                 >
                     <option value={currentStudent?.uniform?.id}>Select Uniform...</option>
                     {
                         uniforms.map((uniform) => {
+                            const isSelected = uniform.id === currentStudent?.uniform?.id
                             return <option
+                                selected={isSelected ? true:false}
                                 value={`${uniform.id}`}
                                 key={`instrument==${uniform.id}`}
                             >
@@ -107,15 +114,20 @@ return (
         <fieldset>
             <div className="form-group">
                 <label htmlFor="prop">Prop: </label>
-                <select className="propDropDown"
-                    onChange={(evt) => {
-                        setPropsId(parseInt(evt.target.value))
-                    }}
+                <select className="propDropDown" id="prop"
+                   onChange={ 
+                    // (evt) => {
+                    // setUniformsId(parseInt(evt.target.value))
+                    changeCurrentStudentState
+                // }
+            }
                 >
                     <option value={currentStudent?.prop?.id}>Select Prop...</option>
                     {
                         props.map((prop) => {
+                            const isSelected = prop.id === currentStudent?.prop?.id
                             return <option
+                                selected={isSelected ? true:false}
                                 value={`${prop.id}`}
                                 key={`instrument==${prop.id}`}
                             >
@@ -136,13 +148,17 @@ return (
                         <input type="checkbox"
                             className="selectPart"
                             defaultChecked={
-                                currentStudent?.music_parts?.find(part => part.id === music.id) ? true : false
+                                // currentStudent?.music_parts?.find(part => part.id === music.id) ? true : false
+                                assignedMusic.has(music.id)
                             }
-                            // value={currentStudent.music_parts}
-                             onChange={(evt) => {
+                            checked={
+                                // currentStudent?.music_parts?.find(part => part.id === music.id) ? true : false
+                                assignedMusic.has(music.id)
+                            }
+                            onChange={(evt) => {
                                 const copy = new Set(assignedMusic)
                                 if(copy.has(music.id)){
-                                    copy.remove(music.id)
+                                    copy.delete(music.id)
                                 } else {
                                     copy.add(music.id)
                                 }
@@ -162,11 +178,22 @@ return (
                 evt.preventDefault()
 
                 const student = {
-                    instrument: instrumentsId,
-                    uniform: uniformsId,
-                    prop: propsId,
+                    instrument: currentStudent.instrument,
+                    uniform: currentStudent.uniform,
+                    prop: currentStudent.prop,
                     music_parts: Array.from(assignedMusic)
                 }
+                // if (currentStudent.instrument.id) {
+                // ?student[instrument] = currentStudent.instrument.id
+                // :student[instrument] = currentStudent.instrument}
+                
+                // if (currentStudent.uniform.id)
+                // ?student[uniform] = currentStudent.uniform.id
+                // :student[uniform] = currentStudent.uniform
+                
+                // if (currentStudent.prop.id)
+                // ?student[prop] = currentStudent.prop.id
+                // :student[prop] = currentStudent.prop
                 
                 // Send POST request to your API
                 updateStudent(student, studentId)

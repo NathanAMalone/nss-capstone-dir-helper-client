@@ -76,16 +76,19 @@ export const DirectorRegister = () => {
                         type="text" id="last_name" className="form-control"
                         placeholder="Enter your last name" required />
                 </fieldset>
-                {/* <fieldset>
+                <fieldset>
                     <label htmlFor="school"> School </label>
-                    <select className="schoolDropDown"
+                    <select className="schoolDropDown" id="school"
                         onChange={(evt) => {
-                            setSchoolId(parseInt(evt.target.value))
+                            const copy = { ...director}
+                            copy[evt.target.id] = parseInt(evt.target.value)
+                            setDirector(copy)
                         }}>
                         <option>Select School...</option>
                         {
                             schools.map((school) => {
                                 return <option
+                                    id="school"
                                     value={`${school.id}`}
                                     key={`school--${school.id}`}>
                                     {school.name}
@@ -93,7 +96,7 @@ export const DirectorRegister = () => {
                             })
                         }
                     </select>
-                </fieldset> */}
+                </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
                     <input onChange={updateDirector}
