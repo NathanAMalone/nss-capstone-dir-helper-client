@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { deleteInstrument, getInstruments } from "../../managers/InstrumentManager"
 import { getStudents } from "../../managers/StudentManager"
+import "./Instruments.css"
 
 export const InstrumentList = () => {
     const [instruments, setInstruments] = useState([])
@@ -21,7 +22,7 @@ export const InstrumentList = () => {
             <header className="instrumentHeader">Instruments</header>
             <button onClick={
                 () => navigate(`/addInstruments`)}
-            className="btn btn-primary">
+            className="btn btn-2">
                 Add Instrument
             </button>
             {
@@ -42,27 +43,27 @@ export const InstrumentList = () => {
                                 :<div className="cardDiv">School Owned: No</div>
                             }
                             <div>Is the instrument assigned?
-                                <div>Assigned to:</div>
+                                <div className="assignedTo">Assigned to:</div>
                             {
                                 instrument.assigned
                                 ? students.map(student => {
                                     if(student?.instrument?.id === instrument.id)
-                                        return <li>{student.full_name}.</li>
+                                        return <li className="assignedList">{student.full_name}.</li>
                                 })
-                                :<div>Not assigned.</div>
+                                :<div className="notAssigned">Not assigned.</div>
                             }
                             </div>
                         </div>
                         <aside>
                             <button onClick={
                                 () => navigate(`/instruments/${instrument.id}`)}
-                                // className="btn btn-primary"
+                                className="btn btn-2"
                                 key={`editButton--${instrument.id}`}>
                                     Edit
                             </button>
                             <button onClick={
                                 () => deleteInstrument(instrument.id).then(window.location.reload())}
-                                // className="btn btn-primary"
+                                className="btn btn-2"
                                 key={`deleteButton--${instrument.id}`}>
                                     Delete
                             </button>

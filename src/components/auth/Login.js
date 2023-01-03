@@ -40,11 +40,11 @@ export const Login = () => {
                     <h1>Director's Helper</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
+                        <label htmlFor="inputUsername"> Email address: </label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label htmlFor="inputPassword"> Password: </label>
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
@@ -54,6 +54,7 @@ export const Login = () => {
                     </fieldset>
                 </form>
             </section>
+                <p className="registerText">Register a new user:</p>
             <section className="link--register">
                 <Link to="/register">New student.</Link>
                 <Link to="/directorRegister">New director.</Link>

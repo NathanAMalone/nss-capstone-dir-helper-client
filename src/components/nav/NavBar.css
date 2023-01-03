@@ -2,9 +2,14 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    border: .2rem solid;
+    background-color: rgb(252, 240, 226);
+    font-weight: 800;
+    margin: 1rem 1rem;
+    border-radius: .5rem;
 }
 
 .navbar__item {
-    flex-basis: 20%;
+    flex-basis: 18%;
     list-style-type: none;
 }

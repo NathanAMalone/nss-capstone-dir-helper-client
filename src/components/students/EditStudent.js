@@ -62,10 +62,7 @@ return (
                 <label htmlFor="instrument">Instrument: </label>
                 <select className="instrumentDropDown" id="instrument"
                     onChange={
-                        // (evt) => {
-                        // setInstrumentsId(parseInt(evt.target.value))
-                        changeCurrentStudentState
-                    // }
+                    changeCurrentStudentState
                 }
                 >
                     <option value={0}>Select Instrument...</option>
@@ -89,10 +86,7 @@ return (
                 <label htmlFor="instrument">Uniform: </label>
                 <select className="uniformDropDown" id="uniform"
                     onChange={
-                        // (evt) => {
-                        // setUniformsId(parseInt(evt.target.value))
                         changeCurrentStudentState
-                    // }
                 }
                 >
                     <option value={currentStudent?.uniform?.id}>Select Uniform...</option>
@@ -116,10 +110,7 @@ return (
                 <label htmlFor="prop">Prop: </label>
                 <select className="propDropDown" id="prop"
                    onChange={ 
-                    // (evt) => {
-                    // setUniformsId(parseInt(evt.target.value))
                     changeCurrentStudentState
-                // }
             }
                 >
                     <option value={currentStudent?.prop?.id}>Select Prop...</option>
@@ -176,24 +167,31 @@ return (
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
+                
+                let selectedInstrument = 0
+                let selectedUniform = 0
+                let selectedProp = 0
 
+                currentStudent.instrument.id
+                ?selectedInstrument = currentStudent.instrument.id
+                :selectedInstrument = currentStudent.instrument
+                
+                currentStudent.uniform.id
+                ?selectedUniform = currentStudent.uniform.id
+                :selectedUniform = currentStudent.uniform
+
+                currentStudent.prop.id
+                ?selectedProp = currentStudent.prop.id
+                :selectedProp = currentStudent.prop
+                
                 const student = {
-                    instrument: currentStudent.instrument,
-                    uniform: currentStudent.uniform,
-                    prop: currentStudent.prop,
+                    
+                    instrument: selectedInstrument,
+                    uniform: selectedUniform,
+                    prop: selectedProp,
                     music_parts: Array.from(assignedMusic)
                 }
-                // if (currentStudent.instrument.id) {
-                // ?student[instrument] = currentStudent.instrument.id
-                // :student[instrument] = currentStudent.instrument}
                 
-                // if (currentStudent.uniform.id)
-                // ?student[uniform] = currentStudent.uniform.id
-                // :student[uniform] = currentStudent.uniform
-                
-                // if (currentStudent.prop.id)
-                // ?student[prop] = currentStudent.prop.id
-                // :student[prop] = currentStudent.prop
                 
                 // Send POST request to your API
                 updateStudent(student, studentId)

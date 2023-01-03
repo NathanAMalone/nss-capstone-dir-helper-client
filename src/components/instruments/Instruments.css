@@ -1,0 +1,41 @@
+.instruments {
+    /* background-color: rgb(252, 240, 226); */
+    background-color: rgb(133, 126, 123);
+
+}
+
+.instrumentHeader {
+    font-size: 26pt;
+    font-weight: 800;
+    text-decoration: underline;
+    color: black;
+    text-shadow: 0px 0px 32px gainsboro;
+    padding-left: 2rem;
+}
+
+.instrumentCard {
+    border: 5px solid;
+    border-color: rgb(32, 138, 174);
+    /* background-color: rgb(234, 196, 53); */
+    /* background-color: gold; */
+    /* background-color: rgb(133, 126, 123); */
+    background-color: rgb(252, 240, 226);
+    border-radius: 1em;
+    box-shadow: -4px 4px 8px;
+    margin: 2rem;
+    padding: 1em;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.assignedTo {
+    padding-left: 1rem;
+}
+
+.assignedList {
+    padding-left: 1rem;
+}
+
+.notAssigned {
+    padding-left: 1rem;
+}

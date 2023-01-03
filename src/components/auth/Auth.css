@@ -34,7 +34,7 @@ fieldset {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.377);
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
@@ -44,6 +44,7 @@ fieldset {
 
 .container--login {
     text-align: center;
+    background-color: rgb(252, 240, 226);
 }
 
 .form--login {
@@ -53,7 +54,7 @@ fieldset {
     min-height: 25rem;
     min-width: 45rem;
     padding: 0 5rem;
-    background-color: hsla(0,0%,100%,0.75);
+    background-color: rgb(252, 240, 226);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
 }
@@ -66,4 +67,20 @@ fieldset {
 .dialog {
     min-width: 15rem;
     min-height: 5rem;
+}
+
+.link--register {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-weight: 900;
+}
+
+.registerText {
+    font-weight: 900;
+}
+
+#school{
+    background-color: rgb(253, 246, 237);
+    /* background-color: rgba(255, 255, 255, 0.377); */
 }
