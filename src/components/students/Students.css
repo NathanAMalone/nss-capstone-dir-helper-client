@@ -1,9 +1,8 @@
-.instruments {
+.students {
     background-color: rgb(133, 126, 123);
-
 }
 
-.instrumentHeader {
+.studentHeader {
     font-size: 26pt;
     font-weight: 800;
     text-decoration: underline;
@@ -12,7 +11,7 @@
     padding-left: 2rem;
 }
 
-.instrumentCard {
+.studentCard {
     border: 5px solid;
     border-color: rgb(32, 138, 174);
     background-color: rgb(252, 240, 226);
@@ -24,8 +23,9 @@
     font-weight: 800;
 }
 
-.assignedTo {
+.assignedPart {
     padding-left: 1rem;
+    font-style: italic;
 }
 
 .assignedList {

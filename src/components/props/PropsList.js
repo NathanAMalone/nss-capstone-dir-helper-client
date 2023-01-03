@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { deleteProp, getProps } from "../../managers/PropManager"
 import { getStudents } from "../../managers/StudentManager"
+import "./Props.css"
 
 export const PropList = () => {
     const [props, setProps] = useState([])
@@ -21,7 +22,7 @@ export const PropList = () => {
             <header className="propHeader">Props</header>
             <button onClick={
                 () => navigate(`/addProps`)}
-            className="btn btn-primary">
+            className="btn btn-2">
                 Add Prop
             </button>
             {
@@ -30,27 +31,27 @@ export const PropList = () => {
                         <div className="cardData">
                             <div className="cardDiv">Name: {prop.name}</div>
                             <div>Is the prop assigned?
-                                <div>Assigned to:</div>
+                                <div className="assignedTo">Assigned to:</div>
                             {
                                 prop.assigned
                                 ? students.map(student => {
                                     if(student.prop.id === prop.id)
-                                        return <li>{student.full_name}</li>
+                                        return <li className="assignedList">{student.full_name}</li>
                                 })
-                                :<div>Not assigned.</div>
+                                :<div className="notAssigned">Not assigned.</div>
                             }
                             </div>
                         </div>
                         <aside>
                         <button onClick={
                             () => navigate(`/props/${prop.id}`)}
-                            // className="btn btn-primary"
+                            className="btn btn-2"
                             key={`editButton--${prop.id}`}>
                                 Edit
                         </button>
                         <button onClick={
                             () => deleteProp(prop.id).then(window.location.reload())}
-                            // className="btn btn-primary"
+                            className="btn btn-2"
                             key={`deleteButton--${prop.id}`}>
                                 Delete
                         </button>

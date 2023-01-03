@@ -139,11 +139,9 @@ return (
                         <input type="checkbox"
                             className="selectPart"
                             defaultChecked={
-                                // currentStudent?.music_parts?.find(part => part.id === music.id) ? true : false
                                 assignedMusic.has(music.id)
                             }
                             checked={
-                                // currentStudent?.music_parts?.find(part => part.id === music.id) ? true : false
                                 assignedMusic.has(music.id)
                             }
                             onChange={(evt) => {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getStudents } from "../../managers/StudentManager"
 import { deleteUniform, getUniforms } from "../../managers/UniformManager"
+import "./Uniforms.css"
 
 export const UniformList = () => {
     const [uniforms, setUniforms] = useState([])
@@ -21,7 +22,7 @@ export const UniformList = () => {
             <header className="uniformHeader">Uniforms</header>
             <button onClick={
                 () => navigate(`/addUniforms`)}
-            className="btn btn-primary">
+            className="btn btn-2">
                 Add Uniform
             </button>
             {
@@ -31,14 +32,14 @@ export const UniformList = () => {
                             <div className="cardDiv">Uniform Number: {uniform.uniform_number}</div>
                             <div className="cardDiv">Uniform Size: {uniform.size}</div>
                             <div>Is the uniform assigned?
-                                <div>Assigned to:</div>
+                                <div className="assignedTo">Assigned to:</div>
                             {
                                 uniform.assigned
                                 ? students.map(student => {
                                     if(student?.uniform?.id === uniform.id)
-                                    return <li>{student.full_name}</li>
+                                    return <li className="assignedList">{student.full_name}</li>
                                 })
-                                :<div>Not assigned.</div>
+                                :<div className="notAssigned">Not assigned.</div>
                             }
 {
                                 uniform.out_for_cleaning
@@ -49,13 +50,13 @@ export const UniformList = () => {
                         <aside>
                             <button onClick={
                                 () => navigate(`/uniforms/${uniform.id}`)}
-                                // className="btn btn-primary"
+                                className="btn btn-2"
                                 key={`editButton--${uniform.id}`}>
                                     Edit
                             </button>
                         <button onClick={
                             () => deleteUniform(uniform.id).then(window.location.reload())}
-                            // className="btn btn-primary"
+                            className="btn btn-2"
                             key={`deleteButton--${uniform.id}`}>
                                 Delete
                         </button>

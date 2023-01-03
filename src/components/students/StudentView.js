@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { getStudents } from "../../managers/StudentManager"
+import "./Students.css"
 
 export const StudentView = () => {
     const [student, setStudents] = useState({})
@@ -26,7 +27,7 @@ export const StudentView = () => {
                                     student?.music_parts?.map(part => {
                                         return<> 
                                         <div>Music: {part?.name}</div>
-                                        <div>Part: {part?.part}</div>
+                                        <div className="assignedPart">Part: {part?.part}</div>
                                         </>
                                     })
                                 }
