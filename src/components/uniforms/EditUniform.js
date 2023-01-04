@@ -32,53 +32,55 @@ const changeUniformCheck = (evt) => {
 return (
     <form className="uniforms">
         <header className="uniformHeader">Edit Uniform</header>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="uniformNumber">Uniform Number: </label>
-                <input type="number" id="uniform_number" required autoFocus className="form-control"
-                    value={currentUniform.uniform_number}
-                    onChange={changeUniformState}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="type">Size: </label>
-                <input type="text" id="size" required className="form-control"
-                    value={currentUniform.size}
-                    onChange={changeUniformState}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="outForCleaning">Out for Cleaning? </label>
-                <input type="checkbox" id="out_for_cleaning" required className="form-control"
-                    checked={currentUniform.out_for_cleaning}
-                    onChange={changeUniformCheck}
-                />
-            </div>
-        </fieldset>
-        
-        <button type="submit"
-            onClick={evt => {
-                // Prevent form from being submitted
-                evt.preventDefault()
+        <div className="editUniformForm">
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="uniformNumber">Uniform Number: </label>
+                    <input type="number" id="uniform_number" required autoFocus className="form-control"
+                        value={currentUniform.uniform_number}
+                        onChange={changeUniformState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="type">Size: </label>
+                    <input type="text" id="size" required className="form-control"
+                        value={currentUniform.size}
+                        onChange={changeUniformState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="outForCleaning">Out for Cleaning? </label>
+                    <input type="checkbox" id="out_for_cleaning" required className="form-control"
+                        checked={currentUniform.out_for_cleaning}
+                        onChange={changeUniformCheck}
+                    />
+                </div>
+            </fieldset>
+            
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
 
-                const uniform = {
-                    uniform_number: currentUniform.uniform_number,
-                    size: currentUniform.size,
-                    out_for_cleaning: currentUniform.out_for_cleaning
-                }
-                
-                // Send POST request to your API
-                updateUniform(uniform, uniformId)
-                    .then(() => navigate("/uniforms"))
-            }}
-            // className="btn btn-primary"
-            >
-                Update
-        </button>
+                    const uniform = {
+                        uniform_number: currentUniform.uniform_number,
+                        size: currentUniform.size,
+                        out_for_cleaning: currentUniform.out_for_cleaning
+                    }
+                    
+                    // Send POST request to your API
+                    updateUniform(uniform, uniformId)
+                        .then(() => navigate("/uniforms"))
+                }}
+                className="btn btn-2"
+                >
+                    Update
+            </button>
+        </div>
     </form>
 
 )

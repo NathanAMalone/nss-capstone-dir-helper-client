@@ -24,43 +24,45 @@ const changeMusicState = (evt) => {
 return (
     <form className="music">
         <header className="musicHeader">Edit Music</header>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="name">Name: </label>
-                <input type="text" id="name" required autoFocus className="form-control"
-                    value={currentMusic.name}
-                    onChange={changeMusicState}
-                />
-            </div>
-        </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="part">Part: </label>
-                <input type="text" id="part" required className="form-control"
-                    value={currentMusic.part}
-                    onChange={changeMusicState}
-                />
-            </div>
-        </fieldset>
-        
-        <button type="submit"
-            onClick={evt => {
-                // Prevent form from being submitted
-                evt.preventDefault()
+        <div className="editMusicForm">
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="name">Name: </label>
+                    <input type="text" id="name" required autoFocus className="form-control"
+                        value={currentMusic.name}
+                        onChange={changeMusicState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="part">Part: </label>
+                    <input type="text" id="part" required className="form-control"
+                        value={currentMusic.part}
+                        onChange={changeMusicState}
+                    />
+                </div>
+            </fieldset>
+            
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
 
-                const music = {
-                    name: currentMusic.name,
-                    part: currentMusic.part
-                }
-                
-                // Send POST request to your API
-                updateMusic(music, musicId)
-                    .then(() => navigate("/music"))
-            }}
-            // className="btn btn-primary"
-            >
-                Update
-        </button>
+                    const music = {
+                        name: currentMusic.name,
+                        part: currentMusic.part
+                    }
+                    
+                    // Send POST request to your API
+                    updateMusic(music, musicId)
+                        .then(() => navigate("/music"))
+                }}
+                className="btn btn-2"
+                >
+                    Update
+            </button>
+        </div>
     </form>
 
 )

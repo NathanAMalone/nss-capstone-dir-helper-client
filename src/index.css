@@ -126,7 +126,6 @@ code {
 	box-shadow: -2px 2px 5px black;
 	border-radius: .5rem;
 	padding: 5px 20px;
-
 }
 
 .btn-2:hover {
@@ -149,17 +148,23 @@ code {
 }
 
 /* Button 3 */
-.btn-3 {
-	background: #e74c3c;
+.btn-add {
+	background: rgb(153, 3, 33);
 	color: #fff;
+	box-shadow: -2px 2px 5px black;
+	border-radius: .5rem;
+	padding: 5px 20px;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.btn-3:hover {
-	background: #c0392b;
+.btn-add:hover {
+	background: rgb(128, 2, 27);
 }
 
-.btn-3:active {
-	background: #c0392b;
+.btn-add:active {
+	background: rgb(185, 6, 42);
 	top: 2px;
 }
 

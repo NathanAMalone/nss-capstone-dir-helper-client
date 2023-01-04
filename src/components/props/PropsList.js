@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { deleteProp, getProps } from "../../managers/PropManager"
 import { getStudents } from "../../managers/StudentManager"
 import "./Props.css"
@@ -22,12 +22,12 @@ export const PropList = () => {
             <header className="propHeader">Props</header>
             <button onClick={
                 () => navigate(`/addProps`)}
-            className="btn btn-2">
+            className="btn btn-add">
                 Add Prop
             </button>
             {
                 props.map((prop) => {
-                    return <section className="propCard">
+                    return <section className="propCard" key={`propCard--${prop.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Name: {prop.name}</div>
                             <div>Is the prop assigned?
@@ -36,7 +36,10 @@ export const PropList = () => {
                                 prop.assigned
                                 ? students.map(student => {
                                     if(student.prop.id === prop.id)
-                                        return <li className="assignedList">{student.full_name}</li>
+                                        return <li className="assignedList"
+                                        key={`studentCard--${student.id}`}>
+                                            {student.full_name
+                                        }</li>
                                 })
                                 :<div className="notAssigned">Not assigned.</div>
                             }

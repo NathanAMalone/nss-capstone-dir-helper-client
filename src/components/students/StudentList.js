@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { deleteStudent, getStudents } from "../../managers/StudentManager"
 import "./Students.css"
 
@@ -16,7 +16,7 @@ export const StudentList = () => {
             <header className="studentHeader">Students</header>
             {
                 students.map((student) => {
-                    return <section className="studentCard">
+                    return <section className="studentCard" key={`studentCard--${student.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Name: {student.full_name}</div>
                             <div className="cardDiv">School: {student.school.name}</div>
@@ -27,10 +27,10 @@ export const StudentList = () => {
                             <div className="cardDiv">
                                 {
                                     student.music_parts.map(part => {
-                                        return<> 
-                                        <div>Music: {part.name}</div>
-                                        <div className="assignedPart">Part: {part.part}</div>
-                                        </>
+                                        return<div key={`assignedPart--${part.id}`}> 
+                                            <div>Music: {part.name}</div>
+                                            <div className="assignedPart">Part: {part.part}</div>
+                                        </div>
                                     })
                                 }
                             </div>

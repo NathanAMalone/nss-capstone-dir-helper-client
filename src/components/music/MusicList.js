@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { deleteMusic, getMusic } from "../../managers/MusicManager"
 import { getStudents } from "../../managers/StudentManager"
 import "./Music.css"
@@ -22,12 +22,12 @@ export const MusicList = () => {
             <header className="musicHeader">Music</header>
             <button onClick={
                 () => navigate(`/addMusic`)}
-            className="btn btn-2">
+            className="btn btn-add">
                 Add Music
             </button>
             {
                 music.map((music) => {
-                    return <section className="musicCard">
+                    return <section className="musicCard" key={`musicCard--${music.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Name: {music.name}</div>
                             <div className="cardDiv">Part: {music.part}</div>
@@ -38,7 +38,10 @@ export const MusicList = () => {
                                 ? students.map(student => {
                                     return student.music_parts.map(part => {
                                         if(part.id === music.id)
-                                        return <li className="assignedList">{student.full_name}.</li>
+                                        return <li className="assignedList"
+                                            key={`studentCard--${student.id}`}>
+                                                {student.full_name}
+                                        </li>
                                     })
                                 })
                                 :<div className="notAssigned">Not assigned.</div>

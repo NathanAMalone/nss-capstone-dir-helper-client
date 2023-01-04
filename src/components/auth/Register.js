@@ -8,7 +8,6 @@ export const Register = () => {
     const conflictDialog = useRef()
     const navigate = useNavigate()
     const [schools, setSchools] = useState([])
-    const [schoolId, setSchoolId] = useState(0)
 
     useEffect(() => {
         getSchools().then(data => setSchools(data))
@@ -34,7 +33,7 @@ export const Register = () => {
             .then(createdUser => {
                 localStorage.setItem("lu_token", createdUser.token)
                 localStorage.setItem("user", JSON.stringify(createdUser))
-                navigate("/")
+                navigate("/home")
             })
             .catch(error => {
                 setFeedback(JSON.parse(error.message).message)
@@ -115,7 +114,7 @@ export const Register = () => {
                         className="form-control" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

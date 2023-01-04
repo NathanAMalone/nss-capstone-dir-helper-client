@@ -8,7 +8,6 @@ export const DirectorRegister = () => {
     const conflictDialog = useRef()
     const navigate = useNavigate()
     const [schools, setSchools] = useState([])
-    const [schoolId, setSchoolId] = useState(0)
 
     useEffect(() => {
         getSchools().then(data => setSchools(data))
@@ -113,7 +112,7 @@ export const DirectorRegister = () => {
                         className="form-control" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

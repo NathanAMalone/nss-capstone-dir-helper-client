@@ -23,33 +23,35 @@ const changePropState = (evt) => {
 return (
     <form className="props">
         <header className="propHeader">Edit Prop</header>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="type">Name: </label>
-                <input type="text" id="name" required autoFocus className="form-control"
-                    value={currentProp.name}
-                    onChange={changePropState}
-                />
-            </div>
-        </fieldset>
-                
-        <button type="submit"
-            onClick={evt => {
-                // Prevent form from being submitted
-                evt.preventDefault()
+        <div className="editPropForm">
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="type">Name: </label>
+                    <input type="text" id="name" required autoFocus className="form-control"
+                        value={currentProp.name}
+                        onChange={changePropState}
+                    />
+                </div>
+            </fieldset>
+                    
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
 
-                const prop = {
-                    name: currentProp.name
-                }
-                
-                // Send POST request to your API
-                updateProp(prop, propId)
-                    .then(() => navigate("/props"))
-            }}
-            // className="btn btn-primary"
-            >
-                Update
-        </button>
+                    const prop = {
+                        name: currentProp.name
+                    }
+                    
+                    // Send POST request to your API
+                    updateProp(prop, propId)
+                        .then(() => navigate("/props"))
+                }}
+                className="btn btn-2"
+                >
+                    Update
+            </button>
+        </div>
     </form>
 
 )

@@ -25,10 +25,10 @@ export const StudentView = () => {
                             <div className="cardDiv">
                                 {
                                     student?.music_parts?.map(part => {
-                                        return<> 
+                                        return<div key={`assignedPart--${part.id}`}> 
                                         <div>Music: {part?.name}</div>
                                         <div className="assignedPart">Part: {part?.part}</div>
-                                        </>
+                                        </div>
                                     })
                                 }
                             </div>

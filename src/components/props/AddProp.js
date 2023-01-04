@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProp } from "../../managers/PropManager";
 
@@ -19,34 +19,36 @@ const changePropState = (evt) => {
 return (
     <form className="props">
         <header className="propHeader">New Prop Form</header>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="type">Name: </label>
-                <input type="text" id="name" required autoFocus className="form-control"
-                    value={currentProp.name}
-                    onChange={changePropState}
-                />
-            </div>
-        </fieldset>
-                
-        <button type="submit"
-            onClick={evt => {
-                // Prevent form from being submitted
-                evt.preventDefault()
+        <div className="newPropForm">
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="type">Name: </label>
+                    <input type="text" id="name" required autoFocus className="form-control"
+                        value={currentProp.name}
+                        onChange={changePropState}
+                    />
+                </div>
+            </fieldset>
+                    
+            <button type="submit"
+                onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
 
-                const prop = {
-                    name: currentProp.name,
-                    assigned: false
-                }
-                
-                // Send POST request to your API
-                createProp(prop)
-                    .then(() => navigate("/props"))
-            }}
-            // className="btn btn-primary"
-            >
-                Add
-        </button>
+                    const prop = {
+                        name: currentProp.name,
+                        assigned: false
+                    }
+                    
+                    // Send POST request to your API
+                    createProp(prop)
+                        .then(() => navigate("/props"))
+                }}
+                className="btn btn-2"
+                >
+                    Add
+            </button>
+        </div>
     </form>
 
 )

@@ -1,5 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
-import { StudentList } from "../components/students/StudentList"
+import { Home } from "../components/home/Home"
 import { StudentView } from "../components/students/StudentView"
 
 export const StudentViews = () => {
@@ -8,6 +8,7 @@ export const StudentViews = () => {
             <Route path="/" element={<Outlet />} >
             
 				<Route path="students" element={ <StudentView />  } />
+                <Route path="/home" element={ <Home />} />
 
             </Route>
         </Routes>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { getStudents } from "../../managers/StudentManager"
 import { deleteUniform, getUniforms } from "../../managers/UniformManager"
 import "./Uniforms.css"
@@ -22,12 +22,12 @@ export const UniformList = () => {
             <header className="uniformHeader">Uniforms</header>
             <button onClick={
                 () => navigate(`/addUniforms`)}
-            className="btn btn-2">
+            className="btn btn-add">
                 Add Uniform
             </button>
             {
                 uniforms.map((uniform) => {
-                    return <section className="uniformCard">
+                    return <section className="uniformCard" key={`uniformCard--${uniform.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Uniform Number: {uniform.uniform_number}</div>
                             <div className="cardDiv">Uniform Size: {uniform.size}</div>
@@ -37,7 +37,10 @@ export const UniformList = () => {
                                 uniform.assigned
                                 ? students.map(student => {
                                     if(student?.uniform?.id === uniform.id)
-                                    return <li className="assignedList">{student.full_name}</li>
+                                    return <li className="assignedList"
+                                    key={`studentCard--${student.id}`}>
+                                        {student.full_name}
+                                    </li>
                                 })
                                 :<div className="notAssigned">Not assigned.</div>
                             }

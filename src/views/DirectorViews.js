@@ -13,14 +13,14 @@ import { AddMusic } from "../components/music/AddMusic"
 import { AddUniform } from "../components/uniforms/AddUniform"
 import { AddProp } from "../components/props/AddProp"
 import { EditStudent } from "../components/students/EditStudent"
+import { Home } from "../components/home/Home"
 
 export const DirectorViews = () => {
     return (
         <Routes>
             <Route path="/" element={<Outlet />} >
             
-				
-                <Route path="instruments" element={ <InstrumentList />  } />
+				<Route path="instruments" element={ <InstrumentList />  } />
                 <Route path="addInstruments" element={ <AddInstrument />  } />
                 <Route path="instruments/:instrumentId" element={ <EditInstrument />  } />
                 <Route path="music" element={ <MusicList />  } />
@@ -34,6 +34,7 @@ export const DirectorViews = () => {
                 <Route path="props/:propId" element={ <EditProp />  } />
                 <Route path="students" element={ <StudentList />  } />
                 <Route path="students/:studentId" element={ <EditStudent />  } />
+                <Route path="/home" element={ <Home />} />
 
             </Route>
         </Routes>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { deleteInstrument, getInstruments } from "../../managers/InstrumentManager"
 import { getStudents } from "../../managers/StudentManager"
 import "./Instruments.css"
@@ -22,12 +22,12 @@ export const InstrumentList = () => {
             <header className="instrumentHeader">Instruments</header>
             <button onClick={
                 () => navigate(`/addInstruments`)}
-            className="btn btn-2">
+            className="btn btn-add">
                 Add Instrument
             </button>
             {
                 instruments.map((instrument) => {
-                    return <section className="instrumentCard">
+                    return <section className="instrumentCard" key={`instrumentCard--${instrument.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Type: {instrument.type}</div>
                             <div className="cardDiv">Name: {instrument.name}</div>
@@ -48,7 +48,10 @@ export const InstrumentList = () => {
                                 instrument.assigned
                                 ? students.map(student => {
                                     if(student?.instrument?.id === instrument.id)
-                                        return <li className="assignedList">{student.full_name}.</li>
+                                        return <li className="assignedList"
+                                        key={`assignedList--${student.id}`}>
+                                            {student.full_name}
+                                        </li>
                                 })
                                 :<div className="notAssigned">Not assigned.</div>
                             }
