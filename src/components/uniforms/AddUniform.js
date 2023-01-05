@@ -27,6 +27,7 @@ return (
                     <label htmlFor="uniformNumber">Uniform Number: </label>
                     <input type="number" id="uniform_number" required autoFocus className="form-control"
                         value={currentUniform.uniform_number}
+                        autocomplete="off"
                         onChange={changeUniformState}
                     />
                 </div>
@@ -36,6 +37,7 @@ return (
                     <label htmlFor="type">Size: </label>
                     <input type="text" id="size" required className="form-control"
                         value={currentUniform.size}
+                        autocomplete="off"
                         onChange={changeUniformState}
                     />
                 </div>

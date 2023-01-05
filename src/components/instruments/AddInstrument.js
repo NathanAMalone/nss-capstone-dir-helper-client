@@ -38,6 +38,7 @@ return (
                     <label htmlFor="name">Name: </label>
                     <input type="text" id="name" required autoFocus className="form-control"
                         value={instrument.name}
+                        autocomplete="off"
                         onChange={changeInstrumentState}
                     />
                 </div>
@@ -47,6 +48,7 @@ return (
                     <label htmlFor="type">Type: </label>
                     <input type="text" id="type" required className="form-control"
                         value={instrument.type}
+                        autocomplete="off"
                         onChange={changeInstrumentState}
                     />
                 </div>
@@ -56,6 +58,7 @@ return (
                     <label htmlFor="serialNumber">Serial Number: </label>
                     <input type="number" id="serial_number" required className="form-control"
                         value={instrument.serial_number}
+                        autocomplete="off"
                         onChange={changeInstrumentState}
                     />
                 </div>

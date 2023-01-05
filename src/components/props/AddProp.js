@@ -25,6 +25,7 @@ return (
                     <label htmlFor="type">Name: </label>
                     <input type="text" id="name" required autoFocus className="form-control"
                         value={currentProp.name}
+                        autocomplete="off"
                         onChange={changePropState}
                     />
                 </div>

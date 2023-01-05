@@ -69,13 +69,13 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="first_name"> First Name </label>
                     <input onChange={updateStudent}
-                        type="text" id="first_name"
+                        type="text" id="first_name" autocomplete="off"
                         className="form-control" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="last_name"> Last Name </label>
                     <input onChange={updateStudent}
-                        type="text" id="last_name"
+                        type="text" id="last_name" autocomplete="off"
                         className="form-control" required />
                 </fieldset>
                 <fieldset>
@@ -104,6 +104,7 @@ export const Register = () => {
                     <input onChange={updateStudent}
                         type="email"
                         id="email"
+                        autocomplete="off"
                         className="form-control" required />
                 </fieldset>
                 <fieldset>
@@ -111,6 +112,7 @@ export const Register = () => {
                     <input onChange={updateStudent}
                         type="password"
                         id="password"
+                        autocomplete="off"
                         className="form-control" required />
                 </fieldset>
                 <fieldset>

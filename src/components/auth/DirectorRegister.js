@@ -66,14 +66,15 @@ export const DirectorRegister = () => {
                 <fieldset>
                     <label htmlFor="first_name"> First Name </label>
                     <input onChange={updateDirector}
-                        type="text" id="first_name" className="form-control"
-                        placeholder="Enter your first name" required autoFocus />
+                        type="text" id="first_name" className="form-control" 
+                        autocomplete="off" placeholder="Enter your first name" 
+                        required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="last_name"> Last Name </label>
                     <input onChange={updateDirector}
                         type="text" id="last_name" className="form-control"
-                        placeholder="Enter your last name" required />
+                        autocomplete="off" placeholder="Enter your last name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="school"> School </label>
@@ -102,6 +103,7 @@ export const DirectorRegister = () => {
                         type="email"
                         id="email"
                         className="form-control"
+                        autocomplete="off"
                         placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
@@ -109,6 +111,7 @@ export const DirectorRegister = () => {
                     <input onChange={updateDirector}
                         type="password"
                         id="password"
+                        autocomplete="off"
                         className="form-control" required />
                 </fieldset>
                 <fieldset>

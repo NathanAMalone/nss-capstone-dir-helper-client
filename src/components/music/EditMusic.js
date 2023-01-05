@@ -30,6 +30,7 @@ return (
                     <label htmlFor="name">Name: </label>
                     <input type="text" id="name" required autoFocus className="form-control"
                         value={currentMusic.name}
+                        autocomplete="off"
                         onChange={changeMusicState}
                     />
                 </div>
@@ -39,6 +40,7 @@ return (
                     <label htmlFor="part">Part: </label>
                     <input type="text" id="part" required className="form-control"
                         value={currentMusic.part}
+                        autocomplete="off"
                         onChange={changeMusicState}
                     />
                 </div>
