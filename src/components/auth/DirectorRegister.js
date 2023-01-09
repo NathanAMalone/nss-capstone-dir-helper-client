@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getSchools } from "../../managers/SchoolManager"
 
-export const Register = () => {
-    const [student, setStudent] = useState({ "account_type": "student" })
+export const DirectorRegister = () => {
+    const [director, setDirector] = useState({ "account_type": "director" })
     const [serverFeedback, setFeedback] = useState("")
     const conflictDialog = useRef()
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ export const Register = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(student)
+            body: JSON.stringify(director)
         })
             .then(res => {
                 if (res.status === 200) {
@@ -33,7 +33,7 @@ export const Register = () => {
             .then(createdUser => {
                 localStorage.setItem("lu_token", createdUser.token)
                 localStorage.setItem("user", JSON.stringify(createdUser))
-                navigate("/home")
+                navigate("/")
             })
             .catch(error => {
                 setFeedback(JSON.parse(error.message).message)
@@ -46,10 +46,10 @@ export const Register = () => {
         }
     }, [serverFeedback])
 
-    const updateStudent = (evt) => {
-        const copy = { ...student }
+    const updateDirector = (evt) => {
+        const copy = { ...director }
         copy[evt.target.id] = evt.target.value
-        setStudent(copy)
+        setDirector(copy)
     }
 
 
@@ -58,33 +58,31 @@ export const Register = () => {
             <dialog className="dialog dialog--password" ref={conflictDialog}>
                 <div>{ serverFeedback }</div>
                 <button className="button--close"
-                    onClick={e => {
-                        conflictDialog.current.close()
-                        setFeedback("")
-                    }}>Close</button>
+                    onClick={e => conflictDialog.current.close()}>Close</button>
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Register New Student Account</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Welcome to the Helper!</h1>
                 <fieldset>
                     <label htmlFor="first_name"> First Name </label>
-                    <input onChange={updateStudent}
-                        type="text" id="first_name" autocomplete="off"
-                        className="form-control" required autoFocus />
+                    <input onChange={updateDirector}
+                        type="text" id="first_name" className="form-control" 
+                        autocomplete="off" placeholder="Enter your first name" 
+                        required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="last_name"> Last Name </label>
-                    <input onChange={updateStudent}
-                        type="text" id="last_name" autocomplete="off"
-                        className="form-control" required />
+                    <input onChange={updateDirector}
+                        type="text" id="last_name" className="form-control"
+                        autocomplete="off" placeholder="Enter your last name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="school"> School </label>
                     <select className="schoolDropDown" id="school"
                         onChange={(evt) => {
-                            const copy = { ...student}
+                            const copy = { ...director}
                             copy[evt.target.id] = parseInt(evt.target.value)
-                            setStudent(copy)
+                            setDirector(copy)
                         }}>
                         <option>Select School...</option>
                         {
@@ -101,15 +99,16 @@ export const Register = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
-                    <input onChange={updateStudent}
+                    <input onChange={updateDirector}
                         type="email"
                         id="email"
+                        className="form-control"
                         autocomplete="off"
-                        className="form-control" required />
+                        placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="password"> Password </label>
-                    <input onChange={updateStudent}
+                    <input onChange={updateDirector}
                         type="password"
                         id="password"
                         autocomplete="off"
@@ -122,4 +121,3 @@ export const Register = () => {
         </main>
     )
 }
-

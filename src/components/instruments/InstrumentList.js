@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { getInstruments } from "../../managers/InstrumentManager"
+import { useNavigate } from "react-router-dom"
+import { deleteInstrument, getInstruments } from "../../managers/InstrumentManager"
 import { getStudents } from "../../managers/StudentManager"
+import "./Instruments.css"
 
 export const InstrumentList = () => {
     const [instruments, setInstruments] = useState([])
     const [students, setStudents] = useState([])
+    const navigate = useNavigate()
     
     useEffect(() => {
         getInstruments().then(data => setInstruments(data))
@@ -18,10 +20,14 @@ export const InstrumentList = () => {
     return (
         <article className="instruments">
             <header className="instrumentHeader">Instruments</header>
-            <button>Add New Instrument</button>
+            <button onClick={
+                () => navigate(`/addInstruments`)}
+            className="btn btn-add">
+                Add Instrument
+            </button>
             {
                 instruments.map((instrument) => {
-                    return <section className="instrumentCard">
+                    return <section className="instrumentCard" key={`instrumentCard--${instrument.id}`}>
                         <div className="cardData">
                             <div className="cardDiv">Type: {instrument.type}</div>
                             <div className="cardDiv">Name: {instrument.name}</div>
@@ -37,20 +43,33 @@ export const InstrumentList = () => {
                                 :<div className="cardDiv">School Owned: No</div>
                             }
                             <div>Is the instrument assigned?
-                                <div>Assigned to:</div>
+                                <div className="assignedTo">Assigned to:</div>
                             {
                                 instrument.assigned
                                 ? students.map(student => {
-                                    if(student.instrument.id === instrument.id)
-                                        return <li>{student.full_name}.</li>
+                                    if(student?.instrument?.id === instrument.id)
+                                        return <li className="assignedList"
+                                        key={`assignedList--${student.id}`}>
+                                            {student.full_name}
+                                        </li>
                                 })
-                                :<div>Not assigned.</div>
+                                :<div className="notAssigned">Not assigned.</div>
                             }
                             </div>
                         </div>
                         <aside>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={
+                                () => navigate(`/instruments/${instrument.id}`)}
+                                className="btn btn-2"
+                                key={`editButton--${instrument.id}`}>
+                                    Edit
+                            </button>
+                            <button onClick={
+                                () => deleteInstrument(instrument.id).then(window.location.reload())}
+                                className="btn btn-2"
+                                key={`deleteButton--${instrument.id}`}>
+                                    Delete
+                            </button>
                         </aside>
                     </section>
                 })    

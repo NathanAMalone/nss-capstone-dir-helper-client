@@ -1,0 +1,57 @@
+.students {
+    background-color: rgb(133, 126, 123);
+}
+
+.editStudentForm {
+    background-color: rgb(252, 240, 226);
+    border: 5px solid;
+    border-color: rgb(32, 138, 174);
+    border-radius: 1em;
+    box-shadow: -4px 4px 8px;
+    margin: 2rem;
+    padding: 1em;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.studentHeader {
+    font-size: 26pt;
+    font-weight: 800;
+    text-decoration: underline;
+    color: black;
+    text-shadow: 0px 0px 32px gainsboro;
+    display: flex;
+    justify-content: center;
+}
+
+.studentCard {
+    border: 5px solid;
+    border-color: rgb(32, 138, 174);
+    background-color: rgb(252, 240, 226);
+    border-radius: 1em;
+    box-shadow: -4px 4px 8px;
+    margin: 2rem;
+    padding: 1em;
+    text-transform: capitalize;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40rem;
+}
+
+.assignedPart {
+    padding-left: 1rem;
+    font-style: italic;
+}
+
+.assignedList {
+    padding-left: 1rem;
+}
+
+.notAssigned {
+    padding-left: 1rem;
+}
